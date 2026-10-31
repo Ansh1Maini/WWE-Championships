@@ -92,3 +92,27 @@ pearsonr = pearsonr(Var1, Var2)
 print(f"the pearsonr result is {pearsonr.statistic}")
 print(f"the pvalue for pearsonr is {pearsonr.pvalue}")
 
+#JOHN CENA: GOAT
+john = df[df["name"] == "John Cena"]
+print(john["days"].mean())
+
+#Randy Orton
+randy = df[df["name"] == "Randy Orton"]
+print(randy["days"].mean())
+
+john_days_held = john["days"]
+randy_days_held = randy["days"]
+#Cena vs Orton: Is the diff in days held significant?
+from scipy.stats import mannwhitneyu
+result = mannwhitneyu(john_days_held, randy_days_held, alternative = "two-sided")
+print(f" The mannwhitney value is: {result.statistic:.4f}")
+print(f" the pvalue is: {result.pvalue:.4f}")
+
+#Independent samples t test
+
+from scipy.stats import ttest_ind
+result = ttest_ind(john_days_held, randy_days_held)
+print(f" The ttest_ind value is: {result.statistic:.4f}")
+print(f" the pvalue is: {result.pvalue:.4f}")
+
+#damn H0 retained, just by looking at the means, the story looked different, no?" Beauty of numbers
