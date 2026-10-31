@@ -78,8 +78,17 @@ women_days = df[df["Category"]== "Women's"]["days"].dropna()
 from scipy.stats import mannwhitneyu
 result = mannwhitneyu(women_days, men_days, alternative = "two-sided")
 print(f"the mannwhitneyu result is {result.statistic: .4f}")
-print(f"the p-valye is {result.pvalue:.4f}")
+print(f"the p-value is {result.pvalue:.4f}")
+
 
 #Since P value is greater than 0.05, we retain the H0 that there is no significant difference in the days for which the title was held between males and females.
 
+# Does increase in the number of title reigns increase or decrease with the increase in the number of days the title is held?
+from scipy.stats import pearsonr
+df = df.dropna(subset=["reign", "days"])
+Var1 = df["reign"]
+Var2 = df["days"]
+pearsonr = pearsonr(Var1, Var2)
+print(f"the pearsonr result is {pearsonr.statistic}")
+print(f"the pvalue for pearsonr is {pearsonr.pvalue}")
 
